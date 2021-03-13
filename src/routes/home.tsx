@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import Link from '@material-ui/core/Link';
 
 import { AuthContext } from '../contexts/authContext';
 
@@ -42,6 +40,14 @@ export default function Home() {
     history.push('/');
   }
 
+  const [userEmail, setUserEmail] = useState("");
+    useEffect(()=> {
+      const email = auth.attrInfo.filter((data:any) => data.Name === 'email');
+      if(email.length) {
+        setUserEmail(email[0].Value)
+      }
+    },[auth.attrInfo]);
+
   return (
     <Grid container>
       <Grid className={classes.root} container direction="column" justify="center" alignItems="center">
@@ -49,7 +55,7 @@ export default function Home() {
           <Grid className={classes.root} container direction="column" justify="center" alignItems="center">
 
             <Box m={2}>
-              Hi {auth.attrInfo[2].Value} you are logged in!!!
+              Hi {userEmail} you are logged in!!!
                 Click here to navigate to another server.
             </Box>
             <Box m={2}>
