@@ -11,8 +11,6 @@ import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from '@material-ui/core/Link';
 
-//import logoImage from './logo.png';
-
 import { AuthContext } from '../contexts/authContext';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +36,7 @@ export default function Home() {
   const history = useHistory();
 
   const auth = useContext(AuthContext);
-console.log(auth.attrInfo);
+
   function signOutClicked() {
     auth.signOut();
     history.push('/');
@@ -51,7 +49,7 @@ console.log(auth.attrInfo);
           <Grid className={classes.root} container direction="column" justify="center" alignItems="center">
 
             <Box m={2}>
-              Hi {auth.attrInfo[3].Value} you are logged in!!!
+              Hi {auth.attrInfo[2].Value} you are logged in!!!
                 Click here to navigate to another server.
             </Box>
             <Box m={2}>

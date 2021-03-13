@@ -97,7 +97,7 @@ const SignUp: React.FunctionComponent<{}> = () => {
 
       <Box m={4}>
         <Button onClick={() => history.push('/verify')} color="primary" variant="contained">
-          Send Code
+          Verify Code
         </Button>
       </Box>
     </>
