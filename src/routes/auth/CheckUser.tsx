@@ -10,8 +10,8 @@ function useQuery() {
 
 function CheckUser() {
   let query = useQuery();
-  console.log("token", query.get("token"));
-  console.log("referesh", query.get("referesh"));
+  //console.log("token", query.get("token"));
+  //console.log("referesh", query.get("referesh"));
   const token = query.get("token");
   const referesh = query.get("referesh");
 
