@@ -33,9 +33,8 @@ const checkUser = useCallback(async () => {
               if (result['UserAttributes']!) {
                 window.localStorage.setItem('accessToken', token!);
                 window.localStorage.setItem('refreshToken', referesh!);
-                //await authContext.getSessionInfoByToken(result['UserAttributes']);
               }
-              await authContext.getSessionInfoByToken();
+              await authContext.getSessionInfoByToken(result['UserAttributes']);
             },
             (error) => {
               console.log(error);
