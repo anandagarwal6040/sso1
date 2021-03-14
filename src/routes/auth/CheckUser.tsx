@@ -37,6 +37,7 @@ function CheckUser() {
         },
         (error) => {
           console.log(error);
+          history.push('signin');
         }
       )
   }

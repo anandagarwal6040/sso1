@@ -30,6 +30,7 @@ const SignInRoute: React.FunctionComponent = () => (
       <Route path="/signup" component={SignUp} />
       <Route path="/verify" component={VerifyCode} />
       <Route path="/requestcode" component={RequestCode} />
+      <Route path="/checkuser/" component={CheckUser} />
       <Route path="/" component={SignIn} />
     </Switch>
   </Router>
