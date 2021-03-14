@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import * as cognito from '../libs/cognito';
 
-import { useHistory } from 'react-router-dom';
-
 export enum AuthStatus {
   Loading,
   SignedIn,
@@ -48,7 +46,6 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
   const [authStatus, setAuthStatus] = useState(AuthStatus.Loading);
   const [sessionInfo, setSessionInfo] = useState({});
   const [attrInfo, setAttrInfo] = useState([]);
-  const history = useHistory();
 
   useEffect(() => {
     async function getSessionInfo() {
@@ -82,14 +79,17 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
         accessToken: window.localStorage.getItem('accessToken'),
         refreshToken: window.localStorage.getItem('refreshToken')
       });
+console.log("inside getSessionInfoByToken1");
       const attr: any = await getAttributes();
+console.log("inside getSessionInfoByToken2");
       setAttrInfo(attr);
+console.log("inside getSessionInfoByToken3");
       setAuthStatus(AuthStatus.SignedIn);
       console.log("inside getSessionInfoByToken before home");
-      history.push('home')
+      window.location.href = "/";
     } catch (err) {
       setAuthStatus(AuthStatus.SignedOut);
-      history.push('signin')
+      window.location.href = '/signin';
       console.log("redirect sigin");
     }
   }

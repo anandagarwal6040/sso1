@@ -50,6 +50,10 @@ export default function Home() {
       }
     },[auth.attrInfo]);
 
+    const redirectToSecondApp = () => {
+        window.location.href = redirectUrl;
+    }
+
   return (
     <Grid container>
       <Grid className={classes.root} container direction="column" justify="center" alignItems="center">
@@ -60,9 +64,9 @@ export default function Home() {
               Hi {userEmail} you are logged in!!!
             </Box>
             <Box m={2}>
-                <form id="gotosecondapp"  action={redirectUrl} method="get">
-                  <input type="submit" style={{color: '#ffffff',backgroundColor: '#3f51b5',padding: '6px 16px',fontSize: '0.875rem',minWidth: '64px',boxSizing: 'border-box',lineHeight: '1.75',borderRadius: '4px',letterSpacing: '0.02857em',textTransform: 'uppercase',border: 0 }} value="Click here to redirect" name="submit"></input>
-                </form>
+             <Button onClick={redirectToSecondApp} variant="contained" color="primary">
+                redirectToSecondApp
+              </Button>
             </Box>
             <Box m={2}>
               <Button onClick={signOutClicked} variant="contained" color="primary">
