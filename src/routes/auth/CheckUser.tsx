@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ function CheckUser() {
     })
       .then(res => res.json())
       .then(
-        async(result) => {
+        async (result) => {
           console.log("result", result);
           await authContext.setAttribute(result);
           history.push('home');
@@ -47,13 +47,13 @@ function CheckUser() {
       checkUser();
     } else {
       console.log("sigin");
-      //history.push('signin');
+      history.push('signin');
     }
-  }, []);
+  });
 
   return (
     <>
-      
+
     </>
   )
 }
