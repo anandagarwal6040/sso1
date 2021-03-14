@@ -34,13 +34,13 @@ export default function Home() {
   const history = useHistory();
 
   const auth = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
 
   function signOutClicked() {
     auth.signOut();
     history.push('/');
   }
 
-  const [userEmail, setUserEmail] = useState("");
     useEffect(()=> {
       const email = auth.attrInfo.filter((data:any) => data.Name === 'email');
       if(email.length) {
@@ -56,7 +56,12 @@ export default function Home() {
 
             <Box m={2}>
               Hi {userEmail} you are logged in!!!
-                Click here to navigate to another server.
+            </Box>
+            <Box m={2}>
+                <form id="gotosecondapp"  action="https://brave-galileo-9f08b7.netlify.app/#/checkuser/" method="get">
+                  <input type="hidden" id="token" value={window.localStorage.getItem('accessToken')!} name="token"></input>
+                  <input type="submit" style={{color: '#ffffff',backgroundColor: '#3f51b5',padding: '6px 16px',fontSize: '0.875rem',minWidth: '64px',boxSizing: 'border-box',lineHeight: '1.75',borderRadius: '4px',letterSpacing: '0.02857em',textTransform: 'uppercase',border: 0 }} value="Click here to redirect" name="submit"></input>
+                </form>
             </Box>
             <Box m={2}>
               <Button onClick={signOutClicked} variant="contained" color="primary">

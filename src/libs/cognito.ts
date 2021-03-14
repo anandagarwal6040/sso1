@@ -3,9 +3,6 @@ import { AuthenticationDetails, CognitoUser, CognitoUserAttribute, CognitoUserPo
 const userPoolId = 'us-east-2_SzCBQX1FD';
 const clientId = '29nl2jgu35q5r1a3vm5vq0t9h6';
 
-console.log(`userpool id=${userPoolId}`);
-console.log(`client id=${clientId}`);
-
 const poolData = {
   UserPoolId: `${userPoolId}`,
   ClientId: `${clientId}`,

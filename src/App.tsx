@@ -13,6 +13,7 @@ import SignUp from './routes/auth/signUp';
 import VerifyCode from './routes/auth/verify';
 import RequestCode from './routes/auth/requestCode';
 import Home from './routes/home';
+import CheckUser from './routes/auth/CheckUser';
 
 let lightTheme = createMuiTheme({
   palette: {
@@ -37,6 +38,7 @@ const SignInRoute: React.FunctionComponent = () => (
 const MainRoute: React.FunctionComponent = () => (
   <Router>
     <Switch>
+      <Route path="/checkuser/" component={CheckUser} />
       <Route path="/" component={Home} />
     </Switch>
   </Router>
