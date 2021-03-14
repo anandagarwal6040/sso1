@@ -34,25 +34,26 @@ export default function Home() {
   const history = useHistory();
 
   const auth = useContext(AuthContext);
+
   const [userEmail, setUserEmail] = useState("");
 
-  const redirectUrl="https://brave-galileo-9f08b7.netlify.app/#/checkuser?token="+window.localStorage.getItem('accessToken')!+"&referesh="+window.localStorage.getItem('refreshToken')!;
+  const redirectUrl = "https://brave-galileo-9f08b7.netlify.app/#/checkuser?token=" + window.localStorage.getItem('accessToken')! + "&referesh=" + window.localStorage.getItem('refreshToken')!;
 
   function signOutClicked() {
     auth.signOut();
     history.push('/');
   }
 
-    useEffect(()=> {
-      const email = auth.attrInfo.filter((data:any) => data.Name === 'email');
-      if(email.length) {
-        setUserEmail(email[0].Value)
-      }
-    },[auth.attrInfo]);
-
-    const redirectToSecondApp = () => {
-        window.location.href = redirectUrl;
+  useEffect(() => {
+    const email = auth.attrInfo.filter((data: any) => data.Name === 'email');
+    if (email.length) {
+      setUserEmail(email[0].Value)
     }
+  }, [auth.attrInfo]);
+
+  const redirectToSecondApp = () => {
+    window.location.href = redirectUrl;
+  }
 
   return (
     <Grid container>
@@ -64,7 +65,7 @@ export default function Home() {
               Hi {userEmail} you are logged in!!!
             </Box>
             <Box m={2}>
-             <Button onClick={redirectToSecondApp} variant="contained" color="primary">
+              <Button onClick={redirectToSecondApp} variant="contained" color="primary">
                 redirectToSecondApp
               </Button>
             </Box>

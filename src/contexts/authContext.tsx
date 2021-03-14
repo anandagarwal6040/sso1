@@ -73,25 +73,25 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
 
   async function getSessionInfoByToken(attr: any) {
     try {
-      console.log("inside getSessionInfoByToken",attr);
+      console.log("inside getSessionInfoByToken", attr);
       //const session: any = await getSession();
       setSessionInfo({
         accessToken: window.localStorage.getItem('accessToken'),
         refreshToken: window.localStorage.getItem('refreshToken')
       });
-console.log("inside getSessionInfoByToken1");
-        //await setAttribute(attr);
+      console.log("inside getSessionInfoByToken1");
+      //await setAttribute(attr);
       //const attr: any = await getAttributes();
-console.log("inside getSessionInfoByToken2");
+      console.log("inside getSessionInfoByToken2");
       setAttrInfo(attr);
-console.log("inside getSessionInfoByToken3");
+      console.log("inside getSessionInfoByToken3");
       setAuthStatus(AuthStatus.SignedIn);
       console.log("inside getSessionInfoByToken before home");
       window.location.href = "/#/";
     } catch (err) {
       setAuthStatus(AuthStatus.SignedOut);
       window.location.href = '/#/signin';
-      console.log("redirect sigin",err);
+      console.log("redirect sigin", err);
     }
   }
   async function signInWithEmail(email: string, password: string) {
