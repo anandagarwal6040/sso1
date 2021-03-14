@@ -32,7 +32,7 @@ function CheckUser() {
       .then(
         async (result) => {
           console.log("result", result);
-          await authContext.setAttribute(result);
+          await authContext.setAttribute(result['UserAttributes']);
           history.push('home');
         },
         (error) => {
