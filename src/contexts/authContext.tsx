@@ -80,7 +80,7 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
         refreshToken: window.localStorage.getItem('refreshToken')
       });
 console.log("inside getSessionInfoByToken1");
-        await setAttribute(attr);
+        //await setAttribute(attr);
       //const attr: any = await getAttributes();
 console.log("inside getSessionInfoByToken2");
       setAttrInfo(attr);
