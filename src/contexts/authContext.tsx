@@ -77,7 +77,7 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
   async function getSessionInfoByToken() {
     try {
       console.log("inside getSessionInfoByToken");
-      const session: any = await getSession();
+      //const session: any = await getSession();
       setSessionInfo({
         accessToken: window.localStorage.getItem('accessToken'),
         refreshToken: window.localStorage.getItem('refreshToken')
