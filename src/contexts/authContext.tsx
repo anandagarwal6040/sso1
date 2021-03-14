@@ -54,9 +54,11 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
         setSessionInfo({
           accessToken: session.accessToken.jwtToken,
           refreshToken: session.refreshToken.token,
+          idToken: session.idToken.jwtToken,
         });
         window.localStorage.setItem('accessToken', `${session.accessToken.jwtToken}`);
         window.localStorage.setItem('refreshToken', `${session.refreshToken.token}`);
+        window.localStorage.setItem('idToken', `${session.idToken.jwtToken}`);
         const attr: any = await getAttributes();
         setAttrInfo(attr);
         setAuthStatus(AuthStatus.SignedIn);
@@ -71,30 +73,21 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
     return null;
   }
 
-  async function getSessionInfoByToken(attr: any) {
+  async function getSessionInfoByToken() {
     try {
-      console.log("inside getSessionInfoByToken", attr);
-      const session: any = await getSession();
-      console.log("inside getSessionInfoByToken", session);
       setSessionInfo({
         accessToken: window.localStorage.getItem('accessToken'),
-        refreshToken: window.localStorage.getItem('refreshToken')
+        refreshToken: window.localStorage.getItem('refreshToken'),
+        idToken: window.localStorage.getItem('idToken'),
       });
-      console.log("inside getSessionInfoByToken1",setSessionInfo);
-      //await setAttribute(attr);
-      //const attr: any = await getAttributes();
-      console.log("inside getSessionInfoByToken2");
-      setAttrInfo(attr);
-      console.log("inside getSessionInfoByToken3");
       setAuthStatus(AuthStatus.SignedIn);
-      console.log("inside getSessionInfoByToken before home");
       window.location.href = "/#/";
     } catch (err) {
       setAuthStatus(AuthStatus.SignedOut);
       window.location.href = '/#/signin';
-      console.log("redirect sigin", err);
     }
   }
+
   async function signInWithEmail(email: string, password: string) {
     try {
       await cognito.signInWithEmail(email, password);

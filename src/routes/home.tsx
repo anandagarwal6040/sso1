@@ -37,6 +37,8 @@ export default function Home() {
 
   const [userEmail, setUserEmail] = useState("");
 
+  //const redirectUrl = "http://localhost:3000/#/checkuser?token=" + window.localStorage.getItem('accessToken')! + "&referesh=" + window.localStorage.getItem('refreshToken')! + "&idtoken=" + window.localStorage.getItem('idToken')!;
+
   const redirectUrl = "https://brave-galileo-9f08b7.netlify.app/#/checkuser?token=" + window.localStorage.getItem('accessToken')! + "&referesh=" + window.localStorage.getItem('refreshToken')!;
 
   function signOutClicked() {
@@ -66,7 +68,7 @@ export default function Home() {
             </Box>
             <Box m={2}>
               <Button onClick={redirectToSecondApp} variant="contained" color="primary">
-                redirectToSecondApp
+                Redirect To First App
               </Button>
             </Box>
             <Box m={2}>
