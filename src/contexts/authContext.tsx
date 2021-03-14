@@ -86,11 +86,11 @@ console.log("inside getSessionInfoByToken2");
 console.log("inside getSessionInfoByToken3");
       setAuthStatus(AuthStatus.SignedIn);
       console.log("inside getSessionInfoByToken before home");
-      window.location.href = "/";
+      window.location.href = "/#/";
     } catch (err) {
       setAuthStatus(AuthStatus.SignedOut);
-      window.location.href = '/signin';
-      console.log("redirect sigin");
+      window.location.href = '/#/signin';
+      console.log("redirect sigin",err);
     }
   }
   async function signInWithEmail(email: string, password: string) {
