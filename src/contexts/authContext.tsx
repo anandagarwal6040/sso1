@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import * as cognito from '../libs/cognito';
 
+import { useHistory } from 'react-router-dom';
+
 export enum AuthStatus {
   Loading,
   SignedIn,
@@ -20,6 +22,7 @@ export interface IAuth {
   sendCode?: any
   getAttributes?: any
   setAttribute?: any
+  getSessionInfoByToken?: any
 };
 
 const defaultState: IAuth = {
@@ -45,6 +48,7 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
   const [authStatus, setAuthStatus] = useState(AuthStatus.Loading);
   const [sessionInfo, setSessionInfo] = useState({});
   const [attrInfo, setAttrInfo] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     async function getSessionInfo() {
@@ -70,6 +74,25 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
     return null;
   }
 
+  async function getSessionInfoByToken() {
+    try {
+      console.log("inside getSessionInfoByToken");
+      const session: any = await getSession();
+      setSessionInfo({
+        accessToken: window.localStorage.getItem('accessToken'),
+        refreshToken: window.localStorage.getItem('refreshToken')
+      });
+      const attr: any = await getAttributes();
+      setAttrInfo(attr);
+      setAuthStatus(AuthStatus.SignedIn);
+      console.log("inside getSessionInfoByToken before home");
+      history.push('home')
+    } catch (err) {
+      setAuthStatus(AuthStatus.SignedOut);
+      history.push('signin')
+      console.log("redirect sigin");
+    }
+  }
   async function signInWithEmail(email: string, password: string) {
     try {
       await cognito.signInWithEmail(email, password);
@@ -148,6 +171,7 @@ const AuthProvider: React.FunctionComponent = ({ children }) => {
     sendCode,
     getAttributes,
     setAttribute,
+    getSessionInfoByToken,
   };
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;

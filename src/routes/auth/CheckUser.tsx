@@ -13,8 +13,9 @@ function useQuery() {
 function CheckUser() {
   let query = useQuery();
   console.log("token", query.get("token"));
-  //const [token, setToken] = useState(accesstoken);
+  console.log("referesh", query.get("referesh"));
   const token = query.get("token");
+  const referesh = query.get("referesh");
 
   const history = useHistory();
 
@@ -32,8 +33,15 @@ function CheckUser() {
       .then(
         async (result) => {
           console.log("result", result);
-          await authContext.setAttribute(result['UserAttributes']);
-          history.push('home');
+          console.log("result", result['UserAttributes']);
+          if (result['UserAttributes'].length) {
+            window.localStorage.setItem('accessToken', token!);
+            window.localStorage.setItem('refreshToken', referesh!);
+            await authContext.getSessionInfoByToken();
+          } else {
+            console.log("not logged in");
+            history.push('signin');
+          }
         },
         (error) => {
           console.log(error);
